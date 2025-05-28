@@ -23,13 +23,11 @@ public class PessoaController{
         this.pessoaService = pessoaService;
     }
 
-    /** Listar todas as pessoas */
     @GetMapping
     public List<Pessoa> listarPessoas(){
         return pessoaService.listarPessoas();
     }
 
-    /** Buscar pessoa por ID */
     @GetMapping("/{id}")
     public ResponseEntity<Pessoa> buscarPessoa(@PathVariable Long id){
         return pessoaService.buscarPorId(id)
@@ -37,12 +35,9 @@ public class PessoaController{
             .orElse(ResponseEntity.notFound().build());
     }
 
-    
     @PostMapping
     public Pessoa criarPessoa(@RequestBody Pessoa pessoa){
-        Pessoa salva = pessoaService.salvarPessoa(pessoa);
-        //return pessoaService.salvarPessoa(pessoa);
-        return pessoaService.salvarPessoa(salva);
+        return pessoaService.salvarPessoa(pessoa);
     }
 
     @DeleteMapping("/{id}")
